@@ -1,18 +1,19 @@
 import "./App.css";
-import Greeting from "./components/Greeting";
+import { PersonCard } from "./components/Cards/PersonCard";
+import Greeting from "./components/Greetings/Greeting";
+import { Navbar } from "./components/Navbar/Navbar";
 
 function App() {
   return (
     // <> fragment - najcesce se koristi za wrapovanje
     <>
       <div className="App">
-        <header className="header">
-          <h1 style={{ color: "white" }}>Logo</h1>
-        </header>
+        <Navbar>{/* <p>Primer</p> */}</Navbar>
         <Greeting
           appName={"my first app!!!"}
           userName={"Mitar Vranic"}
         ></Greeting>
+        <PersonCard></PersonCard>
       </div>
     </>
   );

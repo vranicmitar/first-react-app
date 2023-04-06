@@ -1,0 +1,17 @@
+.cards {
+  width: 300px;
+  height: 350px;
+  background-color: beige;
+  border-radius: 5px;
+  margin-left: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cards img {
+  width: 150px;
+}
+.cards:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}

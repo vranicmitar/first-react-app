@@ -1,0 +1,11 @@
+.main {
+  width: 50%;
+  margin: 50px auto;
+  background-color: yellow;
+  border-radius: 15px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
