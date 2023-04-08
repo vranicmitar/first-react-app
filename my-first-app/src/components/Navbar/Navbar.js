@@ -5,7 +5,7 @@ function Navbar(props) {
   return (
     <>
       <header className="header">
-        <h1 style={{ color: "white" }}>Logo</h1>
+        <h1 style={{ color: "white", marginLeft: "10.5%" }}>Logo</h1>
         {props.children}
       </header>
     </>
