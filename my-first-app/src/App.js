@@ -2,15 +2,44 @@ import "./App.css";
 import { PersonCard } from "./components/Cards/PersonCard";
 import Greeting from "./components/Greetings/Greeting";
 import { Navbar } from "./components/Navbar/Navbar";
-import persons from "./components/common/persons.json";
+import persons from "./common/persons.json";
+import { HotelCard } from "./components/Cards/HotelCard";
+import hotels from "./common/hotels.json";
 
-const persons = [
-  {
-    imageURL:
-      "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg",
-    fullName: "",
-  },
-];
+// const persons = [
+//   {
+//     imageURL:
+//       "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg",
+//     fullName: "Mitar Vranic",
+//     location: "Novi Pazar, Serbia",
+//     description: "Rising Frontend developer",
+//     goToRepositories: "https://github.com/vranicmitar?tab=repositories",
+//   },
+//   {
+//     imageURL:
+//       "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg",
+//     fullName: "Alen Muslic",
+//     location: "Novi Pazar, Serbia",
+//     description: "Rising Frontend developer",
+//     goToRepositories: "https://github.com/alenmuslic?tab=repositories",
+//   },
+//   {
+//     imageURL:
+//       "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg",
+//     fullName: "Aladin Zecic",
+//     location: "Novi Pazar, Serbia",
+//     description: "Rising Frontend developer",
+//     goToRepositories: "https://github.com/aladinzecic?tab=repositories",
+//   },
+//   {
+//     imageURL:
+//       "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg",
+//     fullName: "Haris Muslic",
+//     location: "Novi Pazar, Serbia",
+//     description: "Rising Frontend developer",
+//     goToRepositories: "https://github.com/harismuslic04?tab=repositories",
+//   },
+// ];
 
 function App() {
   return (
@@ -27,32 +56,65 @@ function App() {
             margin: "auto",
             width: "80%",
             display: "grid",
-            gridTemplateColumns: "repeat(5,1fr)",
+            gridTemplateColumns: "repeat(4,1fr)",
             rowGap: "35px",
           }}
         >
-          <PersonCard
+          {/* <PersonCard
             imageURL={
               "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg"
             }
             fullName={"Mitar Vranic"}
             location={"Novi Pazar, Serbia"}
             description={"IT Camp"}
-          ></PersonCard>
-          <PersonCard>
-            imageURL=
-            {
-              "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg"
+            goToRepositories="https://github.com/vranicmitar?tab=repositories"
+          ></PersonCard>{" "}
+          <PersonCard
+            imageURL={"https://avatars.githubusercontent.com/u/111905831?v=4"}
+            fullName={"Alen Muslic"}
+            location={"Novi pazar, Serbia"}
+            description={"Alen is rising Web developer..."}
+            goToRepositories={"https://github.com/alenmuslic?tab=repositories"}
+          />
+          <PersonCard
+            imageURL={
+              "https://www.borisradivojkov.com/assets/images/profesionalni-poslovni-portret-rukovodioca-600x600.jpg"
             }
-            fullName={"Mitar Vranic"}
-            location={"Novi Pazar, Serbia"}
-            description={"IT Camp"}
-          </PersonCard>
-          <PersonCard></PersonCard>
-          <PersonCard></PersonCard>
-          <PersonCard></PersonCard>
+            fullName={"Aladin Zecic"}
+            location={"Novi pazar, Serbia"}
+            description={"Aladin is rising Web developer..."}
+            goToRepositories={"https://github.com/aladinzecic?tab=repositories"}
+          />
+          <PersonCard
+            imageURL={"https://avatars.githubusercontent.com/u/111905979?v=4"}
+            fullName={"Haris Muslic"}
+            location={"Novi pazar, Serbia"}
+            description={"Haris is rising Web developer..."}
+            goToRepositories={
+              "https://github.com/harismuslic04?tab=repositories"
+            }
+          /> */}
+
+          {persons.map((person) => (
+            <PersonCard
+              imageURL={person.imageURL}
+              fullName={person.fullName}
+              location={person.location}
+              description={person.description}
+              goToRepositories={person.goToRepositories}
+            />
+          ))}
         </div>
       </div>
+
+      {hotels.map((hotel) => (
+        <HotelCard
+          imageURL={hotel.imageURL}
+          caption={hotel.caption}
+          description={hotel.description}
+          reviews={hotel.reviews}
+        />
+      ))}
     </>
   );
 }
