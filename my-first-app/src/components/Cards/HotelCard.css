@@ -11,7 +11,7 @@
 
 .first {
   /* background-color: yellow; */
-  width: 350px;
+  width: 320px;
   height: 380px;
   gap: 15px;
   display: flex;
@@ -20,7 +20,7 @@
 }
 
 .first img {
-  width: 350px;
+  width: 320px;
   height: 180px;
 }
 

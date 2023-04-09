@@ -1,0 +1,16 @@
+.hotels {
+  margin: auto;
+  width: 80%;
+  display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 380px;
+  justify-content: space-between;
+  /* background-color: red; */
+  margin-top: 10%;
+}
+
+.container {
+  margin-top: 150px;
+  width: 40%;
+  margin-left: 35%;
+}

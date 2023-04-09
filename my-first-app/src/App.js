@@ -1,3 +1,4 @@
+import React from "react";
 import "./App.css";
 import { PersonCard } from "./components/Cards/PersonCard";
 import Greeting from "./components/Greetings/Greeting";
@@ -105,16 +106,47 @@ function App() {
             />
           ))}
         </div>
-      </div>
+        <div className="hotels">
+          {hotels.map((hotel) => (
+            <HotelCard
+              imageURL={hotel.imageURL}
+              caption={hotel.caption}
+              stars={hotel.stars}
+              description={hotel.description}
+              reviews={hotel.reviews}
+            />
+          ))}
+        </div>
 
-      {hotels.map((hotel) => (
-        <HotelCard
-          imageURL={hotel.imageURL}
-          caption={hotel.caption}
-          description={hotel.description}
-          reviews={hotel.reviews}
-        />
-      ))}
+        <div className="container">
+          <form onSubmit={() => {}}>
+            {" "}
+            <label htmlFor="firstName" required value="">
+              Unesite Vase ime
+            </label>
+            <input type="text" id="firstName" name="firstName" />
+            <br></br>
+            <br></br>
+            <label htmlFor="lastName" required>
+              Unesite Vase prezime
+            </label>
+            <input type="text" id="lastName" name="lastName" />
+            <br></br>
+            <br></br>
+            <label htmlFor="email" required>
+              Unesite Vas email
+            </label>
+            <input type="email" id="email" name="email" />
+            <br></br>
+            <br></br>
+            <label htmlFor="phone">Unesite Vas broj telefona</label>
+            <input type="tel" id="phone" name="phone" />
+            <br></br>
+            <br></br>
+            <button type="submit">Potvrdi</button>
+          </form>
+        </div>
+      </div>
     </>
   );
 }
