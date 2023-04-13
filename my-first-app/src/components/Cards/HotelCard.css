@@ -1,12 +1,6 @@
 .hotelcards {
-  margin: auto;
-  width: 80%;
-  display: flex;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 380px;
-  justify-content: space-between;
-  /* background-color: red; */
-  margin-top: 10%;
+  margin-top: -30px;
+  margin-left: 11%;
 }
 
 .first {

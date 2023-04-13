@@ -64,7 +64,9 @@ function HotelCard(props) {
           {/* 1. nacin uslovnog prikazivanja (Conditional rendering) */}
           {/* {showRecomendation && <p>Recomendation</p>} */}
           {/* 2. nacin uslovnog prikazivanja (Conditional rendering) */}
-          {showRecomendation ? <p>Recomendation</p> : <></>}
+          <p style={{ color: "red" }}>
+            {showRecomendation ? <p>Recomendation</p> : <></>}
+          </p>
         </div>
       </div>
     </>
