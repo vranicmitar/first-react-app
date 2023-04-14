@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { PersonCard } from "./components/Cards/PersonCard";
 import Greeting from "./components/Greetings/Greeting";
@@ -118,31 +118,74 @@ function App() {
           ))}
         </div>
 
-        <div className="container">
-          <form onSubmit={() => {}}>
-            {" "}
-            <label htmlFor="firstName" required value="">
-              Unesite Vase ime
-            </label>
-            <input type="text" id="firstName" name="firstName" />
-            <br></br>
-            <br></br>
-            <label htmlFor="lastName" required>
-              Unesite Vase prezime
-            </label>
-            <input type="text" id="lastName" name="lastName" />
-            <br></br>
-            <br></br>
-            <label htmlFor="email" required>
-              Unesite Vas email
-            </label>
-            <input type="email" id="email" name="email" />
-            <br></br>
-            <br></br>
-            <label htmlFor="phone">Unesite Vas broj telefona</label>
-            <input type="tel" id="phone" name="phone" />
-            <br></br>
-            <br></br>
+        <div className="formContainer">
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+            }}
+          >
+            <label htmlFor="firstName">Unesite vase ime</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              required
+              // innerText={"ime"}
+              // value={ime}
+              // onChange={(event) => {
+              //   console.log(event);
+              //   setName(event.target.value);
+              // }}
+            />
+            <br />
+            <br />
+
+            <label htmlFor="lastName">Unesite vase prezime</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              required
+              value={"ime"}
+              onChange={() => {}}
+            />
+            <br />
+            <br />
+
+            <label htmlFor="email">Unesite vasu email adresu</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              value={"ime"}
+              onChange={() => {}}
+            />
+            <br />
+            <br />
+
+            <label htmlFor="hobi">Unesite vas hobi</label>
+            <input
+              type="text"
+              id="hobi"
+              name="hobi"
+              value={"ime"}
+              onChange={() => {}}
+            />
+            <br />
+            <br />
+
+            <label htmlFor="phone">Unesite vas broj telefona</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={"ime"}
+              onChange={() => {}}
+            />
+            <br />
+            <br />
+
             <button type="submit">Potvrdi</button>
           </form>
         </div>
