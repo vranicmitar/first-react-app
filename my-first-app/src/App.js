@@ -6,6 +6,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import persons from "./common/persons.json";
 import { HotelCard } from "./components/Cards/HotelCard";
 import hotels from "./common/hotels.json";
+import { Form } from "./components/Form/Form";
 
 // const persons = [
 //   {
@@ -42,7 +43,26 @@ import hotels from "./common/hotels.json";
 //   },
 // ];
 
+const poruke = [
+  "Danas je subota",
+  "Usubotu je lepo vreme",
+  "Subota je dan za kupovinu",
+  "Subota je dan za kafu",
+  "Subota je dan za kupanje",
+];
+
+const teams = [
+  {
+    id: 1,
+    name: "Arsenal",
+    points: 72,
+    matches: 30,
+  },
+];
+
 function App() {
+  const [arr, setArr] = useState(poruke);
+
   return (
     // <> fragment - najcesce se koristi za wrapovanje
     <>
@@ -98,6 +118,7 @@ function App() {
 
           {persons.map((person) => (
             <PersonCard
+              key={person.id}
               imageURL={person.imageURL}
               fullName={person.fullName}
               location={person.location}
@@ -109,6 +130,7 @@ function App() {
         <div className="hotels">
           {hotels.map((hotel) => (
             <HotelCard
+              key={hotel.id}
               imageURL={hotel.imageURL}
               caption={hotel.caption}
               stars={hotel.stars}
@@ -116,78 +138,6 @@ function App() {
               reviews={hotel.reviews}
             />
           ))}
-        </div>
-
-        <div className="formContainer">
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-            }}
-          >
-            <label htmlFor="firstName">Unesite vase ime</label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              required
-              // innerText={"ime"}
-              // value={ime}
-              // onChange={(event) => {
-              //   console.log(event);
-              //   setName(event.target.value);
-              // }}
-            />
-            <br />
-            <br />
-
-            <label htmlFor="lastName">Unesite vase prezime</label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              required
-              value={"ime"}
-              onChange={() => {}}
-            />
-            <br />
-            <br />
-
-            <label htmlFor="email">Unesite vasu email adresu</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              value={"ime"}
-              onChange={() => {}}
-            />
-            <br />
-            <br />
-
-            <label htmlFor="hobi">Unesite vas hobi</label>
-            <input
-              type="text"
-              id="hobi"
-              name="hobi"
-              value={"ime"}
-              onChange={() => {}}
-            />
-            <br />
-            <br />
-
-            <label htmlFor="phone">Unesite vas broj telefona</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={"ime"}
-              onChange={() => {}}
-            />
-            <br />
-            <br />
-
-            <button type="submit">Potvrdi</button>
-          </form>
         </div>
       </div>
     </>
