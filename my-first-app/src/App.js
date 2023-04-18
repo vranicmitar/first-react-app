@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import { PersonCard } from "./components/Cards/PersonCard";
 import Greeting from "./components/Greetings/Greeting";
@@ -7,41 +7,8 @@ import persons from "./common/persons.json";
 import { HotelCard } from "./components/Cards/HotelCard";
 import hotels from "./common/hotels.json";
 import { Form } from "./components/Form/Form";
-
-// const persons = [
-//   {
-//     imageURL:
-//       "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg",
-//     fullName: "Mitar Vranic",
-//     location: "Novi Pazar, Serbia",
-//     description: "Rising Frontend developer",
-//     goToRepositories: "https://github.com/vranicmitar?tab=repositories",
-//   },
-//   {
-//     imageURL:
-//       "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg",
-//     fullName: "Alen Muslic",
-//     location: "Novi Pazar, Serbia",
-//     description: "Rising Frontend developer",
-//     goToRepositories: "https://github.com/alenmuslic?tab=repositories",
-//   },
-//   {
-//     imageURL:
-//       "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg",
-//     fullName: "Aladin Zecic",
-//     location: "Novi Pazar, Serbia",
-//     description: "Rising Frontend developer",
-//     goToRepositories: "https://github.com/aladinzecic?tab=repositories",
-//   },
-//   {
-//     imageURL:
-//       "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg",
-//     fullName: "Haris Muslic",
-//     location: "Novi Pazar, Serbia",
-//     description: "Rising Frontend developer",
-//     goToRepositories: "https://github.com/harismuslic04?tab=repositories",
-//   },
-// ];
+import TeamCard from "./components/Cards/TeamCard/TeamCard";
+import teamsJSON from "./common/teams.json";
 
 const poruke = [
   "Danas je subota",
@@ -51,20 +18,45 @@ const poruke = [
   "Subota je dan za kupanje",
 ];
 
-const teams = [
-  {
-    id: 1,
-    name: "Arsenal",
-    points: 72,
-    matches: 30,
-  },
-];
+export const BASE_URL = "https://api.quotable.io";
 
 function App() {
+  const reverseArr = () => {
+    const _arr = [...arr];
+    const reversed = _arr.reverse();
+    setArr(reversed);
+  };
+
   const [arr, setArr] = useState(poruke);
 
+  const [teams, setTeams] = useState(teamsJSON);
+  console.log(teams);
+
+  // Brisanje tima:
+  const deleteTeam = (id) => {
+    const filteredTeams = teams.filter((team) => team.id !== id);
+    setTeams(filteredTeams);
+  };
+  const [quotes, setQuotes] = useState([]);
+  const [page, setPage] = useState(5);
+
+  const getQuotes = async () => {
+    const getQuotes = await fetch(`${BASE_URL}/quotes?page=${page}`);
+    const data = await getQuotes.json();
+    const results = data.results;
+
+    setQuotes(results);
+    console.log(data);
+    // console.log(results);
+  };
+
+  console.log(quotes[0]?.content);
+
+  useEffect(() => {
+    getQuotes();
+  }, [page]);
+
   return (
-    // <> fragment - najcesce se koristi za wrapovanje
     <>
       <div className="App">
         <Navbar>{/* <p>Primer</p> */}</Navbar>
@@ -81,41 +73,6 @@ function App() {
             rowGap: "35px",
           }}
         >
-          {/* <PersonCard
-            imageURL={
-              "https://www.slikomania.rs/fotky6509/fotos/slike-na-platnu_XOBZV030E11E11-gal2.jpg"
-            }
-            fullName={"Mitar Vranic"}
-            location={"Novi Pazar, Serbia"}
-            description={"IT Camp"}
-            goToRepositories="https://github.com/vranicmitar?tab=repositories"
-          ></PersonCard>{" "}
-          <PersonCard
-            imageURL={"https://avatars.githubusercontent.com/u/111905831?v=4"}
-            fullName={"Alen Muslic"}
-            location={"Novi pazar, Serbia"}
-            description={"Alen is rising Web developer..."}
-            goToRepositories={"https://github.com/alenmuslic?tab=repositories"}
-          />
-          <PersonCard
-            imageURL={
-              "https://www.borisradivojkov.com/assets/images/profesionalni-poslovni-portret-rukovodioca-600x600.jpg"
-            }
-            fullName={"Aladin Zecic"}
-            location={"Novi pazar, Serbia"}
-            description={"Aladin is rising Web developer..."}
-            goToRepositories={"https://github.com/aladinzecic?tab=repositories"}
-          />
-          <PersonCard
-            imageURL={"https://avatars.githubusercontent.com/u/111905979?v=4"}
-            fullName={"Haris Muslic"}
-            location={"Novi pazar, Serbia"}
-            description={"Haris is rising Web developer..."}
-            goToRepositories={
-              "https://github.com/harismuslic04?tab=repositories"
-            }
-          /> */}
-
           {persons.map((person) => (
             <PersonCard
               key={person.id}
@@ -139,6 +96,40 @@ function App() {
             />
           ))}
         </div>
+        <Form />
+
+        <div
+          className="turnSen"
+          style={{
+            height: "200px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <button
+            onClick={() => {
+              reverseArr();
+              console.log("okrenuo se niz");
+            }}
+          >
+            Promeni raspored poruka
+          </button>
+          {arr.map((poruka) => (
+            <p>{poruka}</p>
+          ))}
+        </div>
+        {teams.map((team) => (
+          <TeamCard
+            key={team.id}
+            name={team.name}
+            matches={team.matches}
+            points={team.points}
+            deleteTeam={() => deleteTeam(team.id)}
+          />
+        ))}
       </div>
     </>
   );
