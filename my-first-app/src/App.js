@@ -9,7 +9,6 @@ import hotels from "./common/hotels.json";
 import { Form } from "./components/Form/Form";
 import TeamCard from "./components/Cards/TeamCard/TeamCard";
 import teamsJSON from "./common/teams.json";
-
 const poruke = [
   "Danas je subota",
   "Usubotu je lepo vreme",
